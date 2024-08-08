@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;  // ← 修正
+import java.sql.PreparedStatement;  
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -27,23 +27,23 @@ public class Review05 {
                     "123456789");
 
             // 4. DBとやりとりする窓口（PreparedStatementオブジェクト）の作成
-            String sql = "SELECT * FROM person   WHERE id = ?";    // ← 修正
-            pstmt = con.prepareStatement(sql);  // ← 修正
-
+            String sql = "SELECT * FROM person   WHERE id = ?"; 
+            pstmt = con.prepareStatement(sql);  
+            
             // 5, 6. Select文の実行と結果を格納／代入
             System.out.print("検索キーワードを入力してください > ");
             String input = keyIn();
 
-            // PreparedStatementオブジェクトの?に値をセット  // ← 追記
-            pstmt.setString(1, input);  // ← 追記
+            // PreparedStatementオブジェクトの?に値をセット  
+            pstmt.setString(1, input);  
 
-            rs = pstmt.executeQuery();  // ← 修正
+            rs = pstmt.executeQuery();  
 
             // 7. 結果を表示する
             while (rs.next()) {
                 // Name列の値を取得
                 int id = rs.getInt("id");
-                // Population列の値を取得 ← 追記
+                // Population列の値を取得 
                 String name = rs.getString("name");
                 int age = rs.getInt("age");
 
@@ -68,11 +68,11 @@ public class Review05 {
                     e.printStackTrace();
                 }
             }
-            if (pstmt != null) {    // ← 修正
+            if (pstmt != null) {   
                 try {
-                    pstmt.close();    // ← 修正
+                    pstmt.close();    
                 } catch (SQLException e) {
-                    System.err.println("PreparedStatementを閉じるときにエラーが発生しました。");    // ← 修正
+                    System.err.println("PreparedStatementを閉じるときにエラーが発生しました。");    
                     e.printStackTrace();
                 }
             }
